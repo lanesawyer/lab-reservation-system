@@ -1,4 +1,21 @@
-module.exports = function(sequelize, DataTypes) {
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
+
+var ComputerSchema = new Schema({
+  name: {
+    type: String,
+    unique: true
+  },
+  isPowered: Boolean,
+  isLoggedIn: Boolean,
+  isReservable: Boolean,
+  memoryUsage: Number,
+  remoteConnectionCount: Number
+});
+
+mongoose.model('Computer', ComputerSchema);
+
+/*module.exports = function(sequelize, DataTypes) {
   var Computer = sequelize.define('Computer', {
     name: DataTypes.STRING,
     isPowered: DataTypes.BOOLEAN,
@@ -14,3 +31,4 @@ module.exports = function(sequelize, DataTypes) {
  
   return Computer;
 };
+*/

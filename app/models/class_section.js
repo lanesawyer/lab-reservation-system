@@ -1,4 +1,24 @@
-module.exports = function(sequelize, DataTypes) {
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
+
+var ClassSectionSchema = new Schema({
+  section_num: Number,
+  class_num: Number,
+  title: String,
+  timeslot: Date,
+  sunday: Boolean,
+  monday: Boolean,
+  tuesday: Boolean,
+  wednesday: Boolean,
+  thursday: Boolean,
+  friday: Boolean,
+  saturday: Boolean,
+  professor: mongoose.Schema.Types.ObjectId
+});
+
+mongoose.model('ClassSection', ClassSectionSchema);
+
+/*module.exports = function(sequelize, DataTypes) {
   var ClassSection = sequelize.define('ClassSection', {
     section_num: DataTypes.INTEGER,
     class_num: DataTypes.INTEGER,
@@ -20,3 +40,4 @@ module.exports = function(sequelize, DataTypes) {
  
   return ClassSection;
 };
+*/

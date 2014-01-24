@@ -1,7 +1,5 @@
-var restful     = require('sequelize-restful'), 
-    users       = require('../app/controllers/users'),
-    controllers = require('../app/controllers/index'),
-    db           = require('./sequelize');
+var users       = require('../app/controllers/users'),
+    controllers = require('../app/controllers/index');
 
 exports.init = function(app, passport) {
   console.log('Initializing Routes...');
@@ -18,5 +16,5 @@ exports.init = function(app, passport) {
     next();
   });
   
-  app.use(restful(db.sequelize, { endpoint: '/api' }));
+  //app.use(restful(db.sequelize, { endpoint: '/api' }));
 };

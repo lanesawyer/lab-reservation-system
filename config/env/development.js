@@ -1,10 +1,6 @@
 module.exports = {
-    db: {
-        name: "lab_reservation",
-        username: "root",
-        password: "password1",
-    },
+    db: 'mongodb://localhost/lab-reservation',
     app: {
-        name: "M*EAN Stack - Development"
+        name: "Lab Reservation System - Development"
     },
 }

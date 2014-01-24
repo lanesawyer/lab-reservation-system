@@ -1,4 +1,19 @@
-module.exports = function(sequelize, DataTypes) {
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
+
+var UserSchema = new Schema({
+  netId: {
+    type: String,
+    unique: true
+  },
+  name: String,
+  email: String,
+  role: String,
+});
+
+mongoose.model('User', UserSchema);
+
+/*module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define('User', {
     netId: { type: DataTypes.STRING, validate: { notNull: true } },
     name: DataTypes.STRING,
@@ -14,3 +29,4 @@ module.exports = function(sequelize, DataTypes) {
  
   return User;
 };
+*/

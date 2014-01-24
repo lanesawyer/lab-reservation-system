@@ -1,6 +1,7 @@
-var passport     = require('passport'),
+var mongoose     = require('mongoose'),
+    passport     = require('passport'),
     LdapStrategy = require('passport-ldapauth').Strategy,
-    db           = require('./sequelize');
+    User         = mongoose.model('User');
 
 console.log('Initializing Passport...');
 
@@ -10,11 +11,8 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-  db.User.find({where: {id: id}}).success(function(user){
-    console.log('Session: { id: ' + user.id + ', netId: ' + user.netId + ' }');
-    done(null, user);
-  }).error(function(err){
-    done(err, null);
+  User.findById(id, function(err, user) {
+    done(err, user);
   });
 });
 
@@ -29,16 +27,22 @@ passport.use(new LdapStrategy({
       usernameField: 'uid',
     }
   },
-  function(user, done) {
-    db.User.findOrCreate({ netId: user.uid }, { name: user.displayName, email: user.mail, role: 'student' }).success(function(user) {
+  function(LDAP_user, done) {
+    User.findOne({ type: 'user' }, function(err, user) {
+      if(!!err) {
+        done(err, null);
+      }
       if (!user) {
-        done(null, false, { message: 'Unknown user' });
-      } else {
+        user = new User();
+        user.netId = LDAP_user.uid;
+        user.name = LDAP_user.displayName;
+        user.email = LDAP_user.mail;
+        user.role = "student";
+        user.save();
+
         console.log('Login (local) : { id: ' + user.id + ', netId: ' + user.netId + ' }');
         done(null, user);
       }
-    }).error(function(err){
-      done(err);
     });
   }
 ));

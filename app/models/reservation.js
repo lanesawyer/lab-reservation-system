@@ -1,4 +1,18 @@
-module.exports = function(sequelize, DataTypes) {
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
+
+var ReservationSchema = new Schema({
+  start_time: Date,
+  end_time: Date,
+  note: String,
+  user: mongoose.Schema.Types.ObjectId,
+  computer: mongoose.Schema.Types.ObjectId,
+  series: mongoose.Schema.Types.ObjectId
+});
+
+mongoose.model('Reservation', ReservationSchema);
+
+/*module.exports = function(sequelize, DataTypes) {
   var Reservation = sequelize.define('Reservation', {
     start_time: DataTypes.DATE,
     end_time: DataTypes.DATE,
@@ -12,4 +26,4 @@ module.exports = function(sequelize, DataTypes) {
   });
  
   return Reservation;
-};
+};*/

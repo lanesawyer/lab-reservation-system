@@ -1,4 +1,15 @@
-module.exports = function(sequelize, DataTypes) {
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
+
+var SeriesSchema = new Schema({
+  name: String,
+  endsOn: Date,
+  user: mongoose.Schema.Types.ObjectId
+});
+
+mongoose.model('Series', SeriesSchema);
+
+/*module.exports = function(sequelize, DataTypes) {
   var Series = sequelize.define('Series', {
     name: DataTypes.STRING,
     endsOn: DataTypes.DATE
@@ -12,3 +23,4 @@ module.exports = function(sequelize, DataTypes) {
  
   return Series;
 };
+*/
