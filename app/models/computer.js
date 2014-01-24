@@ -13,7 +13,7 @@ var ComputerSchema = new Schema({
   remoteConnectionCount: Number
 });
 
-mongoose.model('Computer', ComputerSchema);
+module.exports.Computer = mongoose.model('Computer', ComputerSchema);
 
 /*module.exports = function(sequelize, DataTypes) {
   var Computer = sequelize.define('Computer', {

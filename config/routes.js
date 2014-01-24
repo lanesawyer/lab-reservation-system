@@ -15,6 +15,4 @@ exports.init = function(app, passport) {
     }
     next();
   });
-  
-  //app.use(restful(db.sequelize, { endpoint: '/api' }));
 };

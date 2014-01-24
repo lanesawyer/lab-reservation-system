@@ -10,7 +10,7 @@ var ReservationSchema = new Schema({
   series: mongoose.Schema.Types.ObjectId
 });
 
-mongoose.model('Reservation', ReservationSchema);
+module.exports.Reservation = mongoose.model('Reservation', ReservationSchema);
 
 /*module.exports = function(sequelize, DataTypes) {
   var Reservation = sequelize.define('Reservation', {

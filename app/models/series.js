@@ -7,7 +7,7 @@ var SeriesSchema = new Schema({
   user: mongoose.Schema.Types.ObjectId
 });
 
-mongoose.model('Series', SeriesSchema);
+module.exports.Series = mongoose.model('Series', SeriesSchema);
 
 /*module.exports = function(sequelize, DataTypes) {
   var Series = sequelize.define('Series', {

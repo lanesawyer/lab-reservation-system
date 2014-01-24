@@ -16,7 +16,7 @@ var ClassSectionSchema = new Schema({
   professor: mongoose.Schema.Types.ObjectId
 });
 
-mongoose.model('ClassSection', ClassSectionSchema);
+module.exports.ClassSection = mongoose.model('ClassSection', ClassSectionSchema);
 
 /*module.exports = function(sequelize, DataTypes) {
   var ClassSection = sequelize.define('ClassSection', {

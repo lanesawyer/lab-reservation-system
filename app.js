@@ -2,7 +2,7 @@ var express  = require('express'),
     fs       = require('fs'),
     config   = require('./config/config');
 
-var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+var env = process.env.NODE_ENV || 'development';
 var app = express();
  
 
@@ -27,6 +27,10 @@ var walk = function(path) {
   });
 };
 walk(models_path);
+
+
+var mers = require('mers');
+app.use('/api', mers({ uri: config.db }).rest());
 
 var passport = require('./config/passport');
 

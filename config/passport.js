@@ -29,7 +29,7 @@ passport.use(new LdapStrategy({
   },
   function(LDAP_user, done) {
     User.findOne({ type: 'user' }, function(err, user) {
-      if(!!err) {
+      if(err) {
         done(err, null);
       }
       if (!user) {
